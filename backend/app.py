@@ -33,7 +33,10 @@ CORS(app)
 # Configuration
 CHROMA_DATA_DIR = os.getenv("CHROMA_DATA_DIR", "./chroma-data")
 DATA_DIR = Path("./data")
-DATA_DIR.mkdir(exist_ok=True)
+
+# Ensure required directories exist (automatically created on first run)
+Path(CHROMA_DATA_DIR).mkdir(parents=True, exist_ok=True)
+DATA_DIR.mkdir(parents=True, exist_ok=True)
 
 # Initialize RAG components
 rag_pipeline = RAGPipeline(chroma_path=CHROMA_DATA_DIR)

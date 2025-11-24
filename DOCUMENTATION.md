@@ -134,6 +134,8 @@ Verify Chroma DB is running:
 curl http://localhost:8000/api/v1/heartbeat
 ```
 
+**Note**: If you're using Chroma DB in embedded mode (no server), the `backend/chroma-data/` directory will be automatically created when you first run the backend server.
+
 #### Step 6: Start the Backend Server
 
 ```bash
@@ -149,6 +151,12 @@ python app.py
 ```
 
 The backend will run on `http://localhost:4000`
+
+**Automatic Directory Creation**: When you start the backend server for the first time, it will automatically create:
+- `backend/data/` - For storing fabric metadata, uploads, and feedback
+- `backend/chroma-data/` - For Chroma DB vector storage (if using embedded mode)
+
+These directories are in `.gitignore` and won't be in the repository, but will be created automatically on first run.
 
 #### Step 7: Start the Frontend
 
